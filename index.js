@@ -4,6 +4,7 @@
 exports.flattenTree = flattenTree;
 exports.flattenLeafAncestors = flattenLeafAncestors;
 exports.groupLeafs = groupLeafs;
+exports.flattenArray = flattenArray;
 
 
 function flattenLeafAncestors(tree) {
@@ -39,6 +40,23 @@ function groupLeafs(flattened) {
     grouped[group][leaf] = flattened[key];
   });
   return grouped;
+}
+
+
+function flattenArray(arr) {
+  var flattened = [], i, len, val;
+  if (Array.isArray(arr)) {
+    for (i = 0, len = arr.length; i < len; i++) {
+      val = arr[i];
+      if (Array.isArray(val)) {
+        flattened.push.apply(flattened, flattenArray(val));
+      }
+      else {
+        flattened.push(val);
+      }
+    }
+  }
+  return flattened;
 }
 
 

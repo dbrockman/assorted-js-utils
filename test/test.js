@@ -4,6 +4,7 @@ require('chai').should();
 var flattenTree = require('..').flattenTree;
 var groupLeafs = require('..').groupLeafs;
 var flattenLeafAncestors = require('..').flattenLeafAncestors;
+var flattenArray = require('..').flattenArray;
 
 describe('flattenTree', function() {
 
@@ -197,6 +198,24 @@ describe('flattenLeafAncestors', function() {
         y: 'a.c.d y val'
       }
     });
+  });
+
+});
+
+
+describe('flattenArray', function() {
+
+  it('should flatten an nested array', function() {
+    flattenArray([1, 2, [3, [[4, 5, [6, 7], 8]], 9]])
+        .should.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    flattenArray([[[[1]]]])
+        .should.eql([1]);
+    flattenArray([[[[]]]])
+        .should.eql([]);
+  });
+
+  it('should return an empty array if argument is not an array', function() {
+    flattenArray({}).should.eql([]);
   });
 
 });
