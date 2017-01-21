@@ -2,4 +2,6 @@
 
 # assorted-js-utils
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dbrockman/assorted-js-utils.svg)](https://greenkeeper.io/)
+
 Not a lib, just various js functions with tests
